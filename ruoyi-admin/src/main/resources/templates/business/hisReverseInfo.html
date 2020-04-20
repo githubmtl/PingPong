@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('历史预约申请')" />
+    <th:block th:include="include :: select2-css" />
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>状态：</label>
+                            <select id="status" class="form-control" name="status">
+                                <option value="">--请选择--</option>
+                                <option value="0">未处理</option>
+                                <option value="1">预约已成功</option>
+                                <option value="3">预约已拒绝</option>
+                            </select>
+                        </li>
+                        <li>
+                            申请人： <select id="userId" autocomplete="off" name="userId" class="form-control"></select>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: select2-js" />
+<script th:inline="javascript">
+    var prefix = ctx + "business";
+    var reverseStatusDatas = [[${@dict.getType('reverse_status')}]];
+
+    $(function() {
+        var options = {
+            url: prefix + "/reverseList",
+            modalName: "预约信息",
+            columns: [{
+                checkbox: false
+            },
+                {
+                    field: 'apply_id',
+                    title: '申请ID',
+                    visible:false
+                },{
+                    field: 'stu_name',
+                    title: '申请人'
+                },
+                {
+                    field: 'stu_no',
+                    title: '申请人学号'
+                },
+                {
+                    field: 'stu_class',
+                    title: '班级'
+                },
+                {
+                    field: 'reverse_start_tm',
+                    title: '开始时间'
+                },{
+                    field: 'reverse_end_tm',
+                    title: '结束时间'
+                },{
+                    field: 'reverse_status',
+                    title: '申请状态',
+                    formatter: function(value, row, index) {
+                        return $.table.selectDictLabel(reverseStatusDatas, value);
+                    }
+                },{
+                    field: 'table_id',
+                    title: '球台ID',
+                    visible:false
+                },{
+                    field: 'no',
+                    title: '球台编号'
+                },{
+                    field: 'addr',
+                    title: '球台地址'
+                },{
+                    field: 'ver_code',
+                    title: '成功验证码'
+                }
+                ]
+        };
+        $.table.init(options);
+        initSelect2("#userId",ctx+'business/users',false);
+    });
+
+    function initSelect2(dom,url,isMultiple){
+        $(dom).select2({
+            language : 'zh-CN',//转为中文版
+            placeholder: "请选择...",//默认显示文案：标签
+            width: "270px",
+            multiple: isMultiple,
+            allowClear: true,
+            minimumInputLength:1,
+            ajax: {
+                url: url,
+                dataType: 'json',
+                cache: false,
+                delay: 500,
+                type: 'post',
+                data:function (params) {
+                    return {
+                        key : params.term
+                    };
+                },
+                processResults: function (data,params) {//结果处理
+                    var result = data.rows;
+                    return {
+                        results: result
+                    };
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

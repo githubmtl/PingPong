@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.business.mapper.TPoolTableMapper">
+    
+    <resultMap type="TPoolTable" id="TPoolTableResult">
+        <result property="id"    column="id"    />
+        <result property="no"    column="no"    />
+        <result property="addr"    column="addr"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectTPoolTableVo">
+        select id, no, addr, status from t_pool_table
+    </sql>
+
+    <select id="selectTPoolTableList" parameterType="TPoolTable" resultMap="TPoolTableResult">
+        <include refid="selectTPoolTableVo"/>
+        <where>  
+            <if test="no != null "> and no = #{no}</if>
+            <if test="addr != null  and addr != ''"> and addr like concat('%', #{addr}, '%')</if>
+            <if test="status != null "> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectTPoolTableById" parameterType="Long" resultMap="TPoolTableResult">
+        <include refid="selectTPoolTableVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTPoolTable" parameterType="TPoolTable" useGeneratedKeys="true" keyProperty="id">
+        insert into t_pool_table
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="no != null ">no,</if>
+            <if test="addr != null  and addr != ''">addr,</if>
+            <if test="status != null ">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="no != null ">#{no},</if>
+            <if test="addr != null  and addr != ''">#{addr},</if>
+            <if test="status != null ">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTPoolTable" parameterType="TPoolTable">
+        update t_pool_table
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="no != null ">no = #{no},</if>
+            <if test="addr != null  and addr != ''">addr = #{addr},</if>
+            <if test="status != null ">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTPoolTableById" parameterType="Long">
+        delete from t_pool_table where id = #{id}
+    </delete>
+
+    <delete id="deleteTPoolTableByIds" parameterType="String">
+        delete from t_pool_table where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
