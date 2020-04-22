@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : VM-CentOS1
-Source Server Version : 50639
-Source Host           : 192.168.17.130:3306
+Source Server         : CentOS7
+Source Server Version : 50643
+Source Host           : 192.168.0.16:3306
 Source Database       : pingpong
 
 Target Server Type    : MYSQL
-Target Server Version : 50639
+Target Server Version : 50643
 File Encoding         : 65001
 
-Date: 2020-04-22 18:02:23
+Date: 2020-04-22 22:26:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -253,7 +253,7 @@ CREATE TABLE `QRTZ_SCHEDULER_STATE` (
 -- ----------------------------
 -- Records of QRTZ_SCHEDULER_STATE
 -- ----------------------------
-INSERT INTO `QRTZ_SCHEDULER_STATE` VALUES ('RuoyiScheduler', 'USERCHI-TGJCPMU1587545957107', '1587549743818', '15000');
+INSERT INTO `QRTZ_SCHEDULER_STATE` VALUES ('RuoyiScheduler', 'DESKTOP-DSDS5J11587565135384', '1587565168533', '15000');
 
 -- ----------------------------
 -- Table structure for QRTZ_SIMPLE_TRIGGERS
@@ -330,9 +330,9 @@ CREATE TABLE `QRTZ_TRIGGERS` (
 -- ----------------------------
 -- Records of QRTZ_TRIGGERS
 -- ----------------------------
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', null, '1587545960000', '-1', '5', 'PAUSED', 'CRON', '1587545957000', '0', null, '2', '');
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', null, '1587545970000', '-1', '5', 'PAUSED', 'CRON', '1587545957000', '0', null, '2', '');
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', null, '1587545960000', '-1', '5', 'PAUSED', 'CRON', '1587545957000', '0', null, '2', '');
+INSERT INTO `QRTZ_TRIGGERS` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', null, '1587565140000', '-1', '5', 'PAUSED', 'CRON', '1587565135000', '0', null, '2', '');
+INSERT INTO `QRTZ_TRIGGERS` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', null, '1587565140000', '-1', '5', 'PAUSED', 'CRON', '1587565135000', '0', null, '2', '');
+INSERT INTO `QRTZ_TRIGGERS` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', null, '1587565140000', '-1', '5', 'PAUSED', 'CRON', '1587565135000', '0', null, '2', '');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -559,7 +559,7 @@ CREATE TABLE `sys_logininfor` (
   `msg` varchar(255) DEFAULT '' COMMENT '提示消息',
   `login_time` datetime DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=275 DEFAULT CHARSET=utf8 COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=305 DEFAULT CHARSET=utf8 COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -654,6 +654,36 @@ INSERT INTO `sys_logininfor` VALUES ('271', 'test', '127.0.0.1', '内网IP', 'Ch
 INSERT INTO `sys_logininfor` VALUES ('272', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 7', '0', '登录成功', '2020-04-22 16:50:00');
 INSERT INTO `sys_logininfor` VALUES ('273', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 7', '0', '退出成功', '2020-04-22 16:59:29');
 INSERT INTO `sys_logininfor` VALUES ('274', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 7', '0', '登录成功', '2020-04-22 16:59:42');
+INSERT INTO `sys_logininfor` VALUES ('275', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '1', '验证码错误', '2020-04-22 20:26:53');
+INSERT INTO `sys_logininfor` VALUES ('276', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 20:26:56');
+INSERT INTO `sys_logininfor` VALUES ('277', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 20:37:25');
+INSERT INTO `sys_logininfor` VALUES ('278', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '1', '密码输入错误1次', '2020-04-22 20:37:31');
+INSERT INTO `sys_logininfor` VALUES ('279', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 20:37:36');
+INSERT INTO `sys_logininfor` VALUES ('280', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 20:40:37');
+INSERT INTO `sys_logininfor` VALUES ('281', 'test', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 20:40:44');
+INSERT INTO `sys_logininfor` VALUES ('282', 'test', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 20:44:18');
+INSERT INTO `sys_logininfor` VALUES ('283', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 21:10:32');
+INSERT INTO `sys_logininfor` VALUES ('284', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 21:10:46');
+INSERT INTO `sys_logininfor` VALUES ('285', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 21:30:18');
+INSERT INTO `sys_logininfor` VALUES ('286', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 21:30:23');
+INSERT INTO `sys_logininfor` VALUES ('287', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 21:43:59');
+INSERT INTO `sys_logininfor` VALUES ('288', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 21:44:22');
+INSERT INTO `sys_logininfor` VALUES ('289', 'test', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 21:44:27');
+INSERT INTO `sys_logininfor` VALUES ('290', 'test', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 21:45:43');
+INSERT INTO `sys_logininfor` VALUES ('291', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 21:45:49');
+INSERT INTO `sys_logininfor` VALUES ('292', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 21:46:19');
+INSERT INTO `sys_logininfor` VALUES ('293', 'test', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 21:46:24');
+INSERT INTO `sys_logininfor` VALUES ('294', 'test', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 21:46:48');
+INSERT INTO `sys_logininfor` VALUES ('295', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 21:46:54');
+INSERT INTO `sys_logininfor` VALUES ('296', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 21:47:18');
+INSERT INTO `sys_logininfor` VALUES ('297', 'test', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 21:47:23');
+INSERT INTO `sys_logininfor` VALUES ('298', 'test', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 21:48:09');
+INSERT INTO `sys_logininfor` VALUES ('299', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 21:48:15');
+INSERT INTO `sys_logininfor` VALUES ('300', 'test', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 22:12:33');
+INSERT INTO `sys_logininfor` VALUES ('301', 'test', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 22:19:18');
+INSERT INTO `sys_logininfor` VALUES ('302', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 22:19:24');
+INSERT INTO `sys_logininfor` VALUES ('303', 'manage', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-04-22 22:19:35');
+INSERT INTO `sys_logininfor` VALUES ('304', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-04-22 22:23:17');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -823,7 +853,7 @@ CREATE TABLE `sys_oper_log` (
   `error_msg` varchar(2000) DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=244 DEFAULT CHARSET=utf8 COMMENT='操作日志记录';
+) ENGINE=InnoDB AUTO_INCREMENT=254 DEFAULT CHARSET=utf8 COMMENT='操作日志记录';
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -972,6 +1002,16 @@ INSERT INTO `sys_oper_log` VALUES ('240', '字典数据', '2', 'com.ruoyi.web.co
 INSERT INTO `sys_oper_log` VALUES ('241', '字典数据', '1', 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', '1', 'admin', '管理员', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\r\n  \"dictLabel\" : [ \"拒绝报修\" ],\r\n  \"dictValue\" : [ \"2\" ],\r\n  \"dictType\" : [ \"repair_status\" ],\r\n  \"cssClass\" : [ \"\" ],\r\n  \"dictSort\" : [ \"2\" ],\r\n  \"listClass\" : [ \"danger\" ],\r\n  \"isDefault\" : [ \"Y\" ],\r\n  \"status\" : [ \"0\" ],\r\n  \"remark\" : [ \"\" ]\r\n}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-04-22 16:50:59');
 INSERT INTO `sys_oper_log` VALUES ('242', '菜单管理', '1', 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', '1', 'admin', '管理员', '/system/menu/add', '127.0.0.1', '内网IP', '{\r\n  \"parentId\" : [ \"2010\" ],\r\n  \"menuType\" : [ \"C\" ],\r\n  \"menuName\" : [ \"报修处理\" ],\r\n  \"url\" : [ \"/business/repair/doRepairView\" ],\r\n  \"target\" : [ \"menuItem\" ],\r\n  \"perms\" : [ \"business:repair:doRepairView\" ],\r\n  \"orderNum\" : [ \"3\" ],\r\n  \"icon\" : [ \"\" ],\r\n  \"visible\" : [ \"0\" ]\r\n}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-04-22 16:58:22');
 INSERT INTO `sys_oper_log` VALUES ('243', '角色管理', '2', 'com.ruoyi.web.controller.system.SysRoleController.editSave()', 'POST', '1', 'admin', '管理员', '/system/role/edit', '127.0.0.1', '内网IP', '{\r\n  \"roleId\" : [ \"100\" ],\r\n  \"roleName\" : [ \"普通管理员\" ],\r\n  \"roleKey\" : [ \"common:admin\" ],\r\n  \"roleSort\" : [ \"3\" ],\r\n  \"status\" : [ \"0\" ],\r\n  \"remark\" : [ \"\" ],\r\n  \"menuIds\" : [ \"2007,2008,2009,2000,2001,2002,2003,2010,2013\" ]\r\n}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-04-22 16:58:39');
+INSERT INTO `sys_oper_log` VALUES ('244', '球台信息', '1', 'com.ruoyi.web.controller.business.TPoolTableController.addSave()', 'POST', '1', 'manage', '管理员', '/business/poolTable/add', '127.0.0.1', '内网IP', '{\r\n  \"no\" : [ \"1\" ],\r\n  \"addr\" : [ \"1\" ],\r\n  \"status\" : [ \"0\" ]\r\n}', 'null', '1', '球台编号[1]已存在！', '2020-04-22 20:40:09');
+INSERT INTO `sys_oper_log` VALUES ('245', '报修信息', '1', 'com.ruoyi.web.controller.business.RepairController.addSave()', 'POST', '1', 'test', null, '/business/repair/add', '127.0.0.1', '内网IP', '{\r\n  \"tableNo\" : [ \"11\" ],\r\n  \"comment\" : [ \"\" ]\r\n}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-04-22 21:47:30');
+INSERT INTO `sys_oper_log` VALUES ('246', '报修信息', '1', 'com.ruoyi.web.controller.business.RepairController.addSave()', 'POST', '1', 'test', null, '/business/repair/add', '127.0.0.1', '内网IP', '{\r\n  \"tableNo\" : [ \"111\" ],\r\n  \"comment\" : [ \"\" ]\r\n}', '{\r\n  \"msg\" : \"球台编号[111]不存在！\",\r\n  \"code\" : 500\r\n}', '0', null, '2020-04-22 21:47:37');
+INSERT INTO `sys_oper_log` VALUES ('247', '报修信息', '1', 'com.ruoyi.web.controller.business.RepairController.addSave()', 'POST', '1', 'test', null, '/business/repair/add', '127.0.0.1', '内网IP', '{\r\n  \"tableNo\" : [ \"1\" ],\r\n  \"comment\" : [ \"坏了\" ]\r\n}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-04-22 21:47:51');
+INSERT INTO `sys_oper_log` VALUES ('248', '报修信息', '1', 'com.ruoyi.web.controller.business.RepairController.addSave()', 'POST', '1', 'test', null, '/business/repair/add', '127.0.0.1', '内网IP', '{\r\n  \"tableNo\" : [ \"1\" ],\r\n  \"comment\" : [ \"1\" ]\r\n}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', '0', null, '2020-04-22 22:12:49');
+INSERT INTO `sys_oper_log` VALUES ('249', '报修信息', '1', 'com.ruoyi.web.controller.business.RepairController.addSave()', 'POST', '1', 'test', null, '/business/repair/add', '127.0.0.1', '内网IP', '{\r\n  \"tableNo\" : [ \"1\" ],\r\n  \"comment\" : [ \"23\" ]\r\n}', '{\r\n  \"msg\" : \"球台[1]已经有人报修啦！\",\r\n  \"code\" : 500\r\n}', '0', null, '2020-04-22 22:14:41');
+INSERT INTO `sys_oper_log` VALUES ('250', '报修信息', '1', 'com.ruoyi.web.controller.business.RepairController.addSave()', 'POST', '1', 'test', null, '/business/repair/add', '127.0.0.1', '内网IP', '{\r\n  \"tableNo\" : [ \"1\" ],\r\n  \"comment\" : [ \"23\" ]\r\n}', '{\r\n  \"msg\" : \"球台[1]已经有人报修啦！\",\r\n  \"code\" : 500\r\n}', '0', null, '2020-04-22 22:16:54');
+INSERT INTO `sys_oper_log` VALUES ('251', '报修信息', '1', 'com.ruoyi.web.controller.business.RepairController.addSave()', 'POST', '1', 'test', null, '/business/repair/add', '127.0.0.1', '内网IP', '{\r\n  \"tableNo\" : [ \"1\" ],\r\n  \"comment\" : [ \"23\" ]\r\n}', '{\r\n  \"msg\" : \"球台[1]已经有人报修啦！\",\r\n  \"code\" : 500\r\n}', '0', null, '2020-04-22 22:17:29');
+INSERT INTO `sys_oper_log` VALUES ('252', '报修信息', '1', 'com.ruoyi.web.controller.business.RepairController.addSave()', 'POST', '1', 'test', null, '/business/repair/add', '127.0.0.1', '内网IP', '{\r\n  \"tableNo\" : [ \"1\" ],\r\n  \"comment\" : [ \"23\" ]\r\n}', '{\r\n  \"msg\" : \"我们已经知道球台[1]已损坏啦！不用报修！\",\r\n  \"code\" : 500\r\n}', '0', null, '2020-04-22 22:18:01');
+INSERT INTO `sys_oper_log` VALUES ('253', '报修信息', '1', 'com.ruoyi.web.controller.business.RepairController.addSave()', 'POST', '1', 'test', null, '/business/repair/add', '127.0.0.1', '内网IP', '{\r\n  \"tableNo\" : [ \"1\" ],\r\n  \"comment\" : [ \"1\" ]\r\n}', '{\r\n  \"msg\" : \"我们已经知道球台[1]已损坏啦！不用报修！\",\r\n  \"code\" : 500\r\n}', '0', null, '2020-04-22 22:19:14');
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -1101,9 +1141,9 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '管理员', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-04-22 16:59:42', 'admin', '2018-03-16 11:33:00', 'ry', '2020-04-22 16:59:42', '管理员');
-INSERT INTO `sys_user` VALUES ('110', '103', 'manage', 'admin', '00', '13@163.com', '15888888887', '1', '', 'cd5a262bbf9f8ca5203d08bfb4fbd77f', '302fa9', '0', '0', '127.0.0.1', '2020-04-22 14:57:15', 'admin', '2020-04-16 11:32:33', '', '2020-04-22 14:57:16', null);
-INSERT INTO `sys_user` VALUES ('115', null, 'test', '测试', '01', '', '', '0', '', '7f5f1d428e275e55584cc48d712e5251', 'edbbb9', '0', '0', '127.0.0.1', '2020-04-22 15:39:05', '', '2020-04-16 17:43:22', '', '2020-04-22 15:39:05', null);
+INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '管理员', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-04-22 22:23:18', 'admin', '2018-03-16 11:33:00', 'ry', '2020-04-22 22:23:17', '管理员');
+INSERT INTO `sys_user` VALUES ('110', '103', 'manage', 'admin', '00', '13@163.com', '15888888887', '1', '', 'cd5a262bbf9f8ca5203d08bfb4fbd77f', '302fa9', '0', '0', '127.0.0.1', '2020-04-22 22:19:25', 'admin', '2020-04-16 11:32:33', '', '2020-04-22 22:19:24', null);
+INSERT INTO `sys_user` VALUES ('115', null, 'test', '测试', '01', '', '', '0', '', '7f5f1d428e275e55584cc48d712e5251', 'edbbb9', '0', '0', '127.0.0.1', '2020-04-22 22:12:34', '', '2020-04-16 17:43:22', '', '2020-04-22 22:12:33', null);
 
 -- ----------------------------
 -- Table structure for sys_user_online
@@ -1127,6 +1167,7 @@ CREATE TABLE `sys_user_online` (
 -- ----------------------------
 -- Records of sys_user_online
 -- ----------------------------
+INSERT INTO `sys_user_online` VALUES ('e3a06fba-7e66-4ab3-8e47-61fbf9c28b6f', 'admin', '管理员', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', 'on_line', '2020-04-22 22:23:11', '2020-04-22 22:25:43', '1800000');
 
 -- ----------------------------
 -- Table structure for sys_user_post
@@ -1181,7 +1222,7 @@ CREATE TABLE `t_appraise` (
   `appraise_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '评价时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `appraise_idx` (`reverse_info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='评论信息';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='评论信息';
 
 -- ----------------------------
 -- Records of t_appraise
@@ -1202,8 +1243,8 @@ CREATE TABLE `t_pool_table` (
 -- ----------------------------
 -- Records of t_pool_table
 -- ----------------------------
-INSERT INTO `t_pool_table` VALUES ('1', '1', '11', '0');
-INSERT INTO `t_pool_table` VALUES ('2', '2', '2', '0');
+INSERT INTO `t_pool_table` VALUES ('1', '1', '11', '9');
+INSERT INTO `t_pool_table` VALUES ('2', '2', '2', '9');
 INSERT INTO `t_pool_table` VALUES ('3', '3', '3', '0');
 INSERT INTO `t_pool_table` VALUES ('4', '4', '4', '0');
 INSERT INTO `t_pool_table` VALUES ('5', '5', '5', '9');
@@ -1240,14 +1281,11 @@ CREATE TABLE `t_repair` (
   `status` int(11) DEFAULT NULL COMMENT '状态 0-未处理 1-同意报修 2-拒绝报修',
   `comment` varchar(2000) DEFAULT NULL COMMENT '详细描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='报修信息';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='报修信息';
 
 -- ----------------------------
 -- Records of t_repair
 -- ----------------------------
-INSERT INTO `t_repair` VALUES ('1', '115', '测试', '0008', '2', '2020-04-22 16:02:01', null, '0', '哈哈');
-INSERT INTO `t_repair` VALUES ('2', '115', '测试', '0008', '3', '2020-04-22 16:07:24', null, '0', '333');
-INSERT INTO `t_repair` VALUES ('3', '115', '测试', '0008', '4', '2020-04-22 16:08:28', null, '0', '44');
 
 -- ----------------------------
 -- Table structure for t_reverse_info
@@ -1263,12 +1301,13 @@ CREATE TABLE `t_reverse_info` (
   `status` int(1) NOT NULL COMMENT '状态  0 -未审批  1-同意  3-拒绝',
   `ver_code` varchar(100) DEFAULT NULL COMMENT '验证码',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='预定信息';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='预定信息';
 
 -- ----------------------------
 -- Records of t_reverse_info
 -- ----------------------------
 INSERT INTO `t_reverse_info` VALUES ('4', '2', '115', '9', '2020-04-16 19:00:00', '2020-04-16 20:00:00', '1', '1545FDBA0BA44DA98834F8A2A0A4BCC6');
+INSERT INTO `t_reverse_info` VALUES ('5', '1', '115', '9', '2020-04-22 00:00:00', '2020-04-22 01:00:00', '0', null);
 
 -- ----------------------------
 -- Table structure for t_student
