@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-	<th:block th:include="include :: header('用户评价')" />
+	<th:block th:include="include :: header2('用户评价')" />
 </head>
 <body>
     <div class="main-content">
-        <form id="form-user-add" class="form-horizontal">
-            <input name="deptId" type="hidden" id="treeId"/>
-            <h4 class="form-header h4">您的评价就是我们的动力</h4>
+        <form id="form-add" class="form-horizontal">
+            <h2 th:if="${admin}==false" class="form-header h4">您的评价就是我们的动力</h2>
+            <h2 th:if="${admin}==true" class="form-header h4">认真对待每一条评论</h2>
             <div class="row">
-            	<div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">用户名称：</label>
-                        <div class="col-sm-8">
-                            <input style="display: none" name="userName" placeholder="请输入用户名称" class="form-control" type="text" maxlength="30" required>
-                        </div>
-                        <div id="cleanNum"></div>
+                <div class="form-group">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>台面清洁评分</legend>
+                    </fieldset>
+                    <div style="margin-left: 100px" id="cleanNumDiv"></div>
+                    <div class="col-sm-10">
+                        <input style="display: none" id="cleanNum" name="cleanNum" class="form-control" type="text" maxlength="30" required>
                     </div>
+                </div>
+                <div class="form-group">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>球台完整评分</legend>
+                    </fieldset>
+                    <div style="margin-left: 100px" id="qiuTaiNumDiv"></div>
+                    <div class="col-sm-10">
+                        <input style="display: none" id="qiuTaiNum" name="qiuTaiNum" class="form-control" type="text" maxlength="30" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>室内温度评分</legend>
+                    </fieldset>
+                    <div style="margin-left: 100px" id="tempNumDiv"></div>
+                    <div class="col-sm-10">
+                        <input style="display: none" id="tempNum" name="tempNum" class="form-control" type="text" maxlength="30" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend th:if="${admin}==false">您的其他宝贵建议</legend>
+                        <legend th:if="${admin}==true">顾客的其他建议</legend>
+                    </fieldset>
+                    <div class="col-sm-10">
+                        <textarea th:text="${appraiseInfo.comment}" style="margin-left: 50px" type="text" name="comment" class="form-control" maxlength="255" placeholder="请输入您的其他宝贵建议"></textarea>
+                    </div>
+                    <input style="display: none" th:value="${reverseInfoId}" id="reverseInfoId" name="reverseInfoId" class="form-control" type="text" maxlength="30" required>
+                    <input style="display: none" th:value="${appraiseInfo.id}" name="id" class="form-control" type="text" maxlength="30" required>
                 </div>
             </div>
         </form>
@@ -24,19 +53,77 @@
       
     <div class="row">
         <div class="col-sm-offset-5 col-sm-10">
-            <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保 存</button>&nbsp;
-            <button type="button" class="btn btn-sm btn-danger" onclick="closeItem()"><i class="fa fa-reply-all"></i>关 闭 </button>
+            <button th:if="${appraiseFlag}==false" type="button" class="btn btn-sm btn-primary" onclick="submitHandler(0)"><i class="fa fa-check"></i>提 交</button>&nbsp;
+            <button th:if="${admin}==true" type="button" class="btn btn-sm layui-btn-danger" onclick="submitHandler(1)"><i class="fa fa-close"></i>删除评价</button>&nbsp;
+            <button th:if="${appraiseFlag}==true" type="button" class="btn btn-sm btn-primary" onclick="submitHandler(0)"><i class="fa fa-check"></i>修 改</button>&nbsp;
+            <button type="button" id="closeId" class="btn btn-sm btn-danger" onclick="closeItem()"><i class="fa fa-reply-all"></i>关 闭 </button>
         </div>
     </div>
-	<th:block th:include="include :: footer" />
-	<script>
-	    var prefix = ctx + "business/appraie";
+	<th:block th:include="include :: footer2" />
+	<script th:inline="javascript">
+	    var appraiseFlag=[[${appraiseFlag}]];
+
+	    var appraiseInfo=[[${appraiseInfo}]];
+
+	    $(function () {
+            if ([[${admin}]]==true&&[[${appraiseFlag}]]==false){
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.open({
+                        title: '提示信息'
+                        ,content: '该笔预约申请还没有评价！'
+                        ,icon: 5
+                        ,end : function(){
+                            $('#closeId').click();
+                        }
+                    });
+                });
+            }
+        });
+	    
+	    function submitHandler(opt){
+            $.modal.loading("正在提交，请稍后...");
+            var url='';
+            if (opt==1){
+                url=ctx+'business/appraiseDel';
+            }else{
+                url=ctx+'business/appraiseSave';
+            }
+	        $.ajax({
+                url:url,
+                type:'POST',
+                data:$('#form-add').serialize(),
+                error:function () {
+                    $.modal.closeLoading();
+                    $.modal.alertError("操作失败！");
+                },
+                success:function (d) {
+                    $.modal.closeLoading();
+                    if (d.code==0){
+                        layui.use('layer', function(){
+                            var layer = layui.layer;
+                            layer.open({
+                                title: '提示信息'
+                                ,icon: 1
+                                ,content: d.msg
+                                ,end : function(){
+                                    $('#closeId').click();
+                                }
+                            });
+                        });
+                    }else{
+                        $.modal.alertError(d.msg);
+                    }
+                }
+            });
+        }
+
         layui.use(['rate'], function(){
             var rate = layui.rate;
-            //自定义文本
+            //清洁
             rate.render({
-                elem: '#cleanNum'
-                ,value: 3
+                elem: '#cleanNumDiv'
+                ,value: appraiseInfo.cleanNum
                 ,text: true
                 ,setText: function(value){ //自定义文本的回调
                     var arrs = {
@@ -46,7 +133,48 @@
                         ,'4': '好'
                         ,'5': '极好'
                     };
-                    this.span.text(arrs[value] || ( value + "星"));
+                    this.span.text(arrs[value] || ("未评价"));
+                    $('#cleanNum').val(value);
+                },choose: function(value){
+                    $('#cleanNum').val(value);
+                }
+            })
+            //球台
+            rate.render({
+                elem: '#qiuTaiNumDiv'
+                ,value: appraiseInfo.qiuTaiNum
+                ,text: true
+                ,setText: function(value){ //自定义文本的回调
+                    var arrs = {
+                        '1': '极差'
+                        ,'2': '差'
+                        ,'3': '中等'
+                        ,'4': '好'
+                        ,'5': '极好'
+                    };
+                    this.span.text(arrs[value] || ("未评价"));
+                    $('#qiuTaiNum').val(value);
+                },choose: function(value){
+                    $('#qiuTaiNum').val(value);
+                }
+            })
+            //室温
+            rate.render({
+                elem: '#tempNumDiv'
+                ,value: appraiseInfo.tempNum
+                ,text: true
+                ,setText: function(value){ //自定义文本的回调
+                    var arrs = {
+                        '1': '极差'
+                        ,'2': '差'
+                        ,'3': '中等'
+                        ,'4': '好'
+                        ,'5': '极好'
+                    };
+                    this.span.text(arrs[value] || ("未评价"));
+                    $('#tempNum').val(value);
+                },choose: function(value){
+                    $('#tempNum').val(value);
                 }
             })
         });

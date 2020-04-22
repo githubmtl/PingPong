@@ -90,6 +90,16 @@
                 },{
                     field: 'ver_code',
                     title: '成功验证码'
+                },{
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        if (row.reverse_status==1){
+                            actions.push('<a class="btn btn-info btn-xs " href="javascript:void(0)" onclick="pj(\'' + row.apply_id + '\')"><i class="fa fa-map-pin"></i>查看评价</a> ');
+                        }
+                        return actions.join('');
+                    }
                 }
                 ]
         };
@@ -125,7 +135,9 @@
             }
         });
     }
-
+    function pj(id) {
+        $.modal.openTab('评价查看', ctx+"business/appraise?admin=true&id="+id);
+    }
 </script>
 </body>
 </html>

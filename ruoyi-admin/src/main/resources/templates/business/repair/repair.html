@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('报修信息列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li style="display: none">
+                                <label>报修人：</label>
+                                <input th:value="${userId}" type="text" name="repairUserId"/>
+                            </li>
+                            <li>
+                                <label style="width: 80px">球台编号：</label>
+                                <input type="text" name="tableNo"/>
+                            </li>
+                            <li>
+                                <label>状态：</label>
+                                <select name="status" th:with="type=${@dict.getType('repair_status')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                </select>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('business:repair:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('business:repair:remove')}]];
+        var statusDatas = [[${@dict.getType('repair_status')}]];
+        var prefix = ctx + "business/repair";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "报修信息",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id', 
+                    title: '主键',
+                    visible: false
+                },
+                {
+                    field: 'repairUserName', 
+                    title: '报修人'
+                },
+                {
+                    field: 'repairStudentNo', 
+                    title: '报修人学号'
+                },
+                {
+                    field: 'tableNo', 
+                    title: '球台编号'
+                },
+                {
+                    field: 'repairTime', 
+                    title: '报修时间'
+                },
+                {
+                    field: 'doTime', 
+                    title: '处理时间'
+                },
+                {
+                    field: 'status', 
+                    title: '状态',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(statusDatas, value);
+                    }
+                },
+                {
+                    field: 'comment', 
+                    title: '详细描述'
+                }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

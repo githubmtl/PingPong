@@ -87,11 +87,25 @@
                 },{
                     field: 'ver_code',
                     title: '成功验证码'
+                },{
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        if (row.reverse_status==1){
+                            actions.push('<a class="btn btn-warning btn-xs " href="javascript:void(0)" onclick="pj(\'' + row.apply_id + '\')"><i class="fa fa-edit"></i>评价</a> ');
+                        }
+                        return actions.join('');
+                    }
                 }
                 ]
         };
         $.table.init(options);
     });
+
+    function pj(id) {
+        $.modal.openTab('评价', ctx+"business/appraise?id="+id);
+    }
 </script>
 </body>
 </html>

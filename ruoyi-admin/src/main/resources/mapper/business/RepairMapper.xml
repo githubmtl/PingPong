@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.business.mapper.RepairMapper">
+    
+    <resultMap type="Repair" id="RepairResult">
+        <result property="id"    column="id"    />
+        <result property="repairUserId"    column="repair_user_id"    />
+        <result property="repairUserName"    column="repair_user_name"    />
+        <result property="repairStudentNo"    column="repair_student_no"    />
+        <result property="tableNo"    column="table_no"    />
+        <result property="repairTime"    column="repair_time"    />
+        <result property="doTime"    column="do_time"    />
+        <result property="status"    column="status"    />
+        <result property="comment"    column="comment"    />
+    </resultMap>
+
+    <sql id="selectRepairVo">
+        select id, repair_user_id, repair_user_name, repair_student_no, table_no, repair_time, do_time, status, comment from t_repair
+    </sql>
+
+    <select id="selectRepairList" parameterType="Repair" resultMap="RepairResult">
+        <include refid="selectRepairVo"/>
+        <where>  
+            <if test="repairUserName != null  and repairUserName != ''"> and repair_user_name like concat('%', #{repairUserName}, '%')</if>
+            <if test="repairStudentNo != null  and repairStudentNo != ''"> and repair_student_no = #{repairStudentNo}</if>
+            <if test="tableNo != null  and tableNo != ''"> and table_no = #{tableNo}</if>
+            <if test="status != null "> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectRepairById" parameterType="Long" resultMap="RepairResult">
+        <include refid="selectRepairVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertRepair" parameterType="Repair" useGeneratedKeys="true" keyProperty="id">
+        insert into t_repair
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="repairUserId != null ">repair_user_id,</if>
+            <if test="repairUserName != null  and repairUserName != ''">repair_user_name,</if>
+            <if test="repairStudentNo != null  and repairStudentNo != ''">repair_student_no,</if>
+            <if test="tableNo != null  and tableNo != ''">table_no,</if>
+            <if test="repairTime != null ">repair_time,</if>
+            <if test="doTime != null ">do_time,</if>
+            <if test="status != null ">status,</if>
+            <if test="comment != null  and comment != ''">comment,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="repairUserId != null ">#{repairUserId},</if>
+            <if test="repairUserName != null  and repairUserName != ''">#{repairUserName},</if>
+            <if test="repairStudentNo != null  and repairStudentNo != ''">#{repairStudentNo},</if>
+            <if test="tableNo != null  and tableNo != ''">#{tableNo},</if>
+            <if test="repairTime != null ">#{repairTime},</if>
+            <if test="doTime != null ">#{doTime},</if>
+            <if test="status != null ">#{status},</if>
+            <if test="comment != null  and comment != ''">#{comment},</if>
+         </trim>
+    </insert>
+
+    <update id="updateRepair" parameterType="Repair">
+        update t_repair
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="repairUserId != null ">repair_user_id = #{repairUserId},</if>
+            <if test="repairUserName != null  and repairUserName != ''">repair_user_name = #{repairUserName},</if>
+            <if test="repairStudentNo != null  and repairStudentNo != ''">repair_student_no = #{repairStudentNo},</if>
+            <if test="tableNo != null  and tableNo != ''">table_no = #{tableNo},</if>
+            <if test="repairTime != null ">repair_time = #{repairTime},</if>
+            <if test="doTime != null ">do_time = #{doTime},</if>
+            <if test="status != null ">status = #{status},</if>
+            <if test="comment != null  and comment != ''">comment = #{comment},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteRepairById" parameterType="Long">
+        delete from t_repair where id = #{id}
+    </delete>
+
+    <delete id="deleteRepairByIds" parameterType="String">
+        delete from t_repair where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
