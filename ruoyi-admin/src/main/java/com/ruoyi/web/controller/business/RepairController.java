@@ -113,8 +113,16 @@ public class RepairController extends BaseController
             return error("球台编号["+tableNo+"]不存在！");
         }
         TPoolTable table = tPoolTables.get(0);
-        if ("9".equals(table.getStatus())){
+        System.out.println(table.getStatus());
+        if (table.getStatus()==9){
             return error("我们已经知道球台["+tableNo+"]已损坏啦！不用报修！");
+        }
+        Repair r=new Repair();
+        r.setStatus(0l);
+        r.setTableNo(repair.getTableNo());
+        List<Repair> repairs = repairService.selectRepairList(r);
+        if (!CollectionUtils.isEmpty(repairs)){
+            return error("球台["+tableNo+"]已经有人报修啦！");
         }
         SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
         UserStudentExample userStudentExample=new UserStudentExample();

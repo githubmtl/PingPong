@@ -1,12 +1,15 @@
 package com.ruoyi.business.service.impl;
 
 import java.util.List;
+
+import com.ruoyi.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.business.mapper.TPoolTableMapper;
 import com.ruoyi.business.domain.TPoolTable;
 import com.ruoyi.business.service.ITPoolTableService;
 import com.ruoyi.common.core.text.Convert;
+import org.springframework.util.CollectionUtils;
 
 /**
  * 球台信息Service业务层处理
@@ -53,6 +56,16 @@ public class TPoolTableServiceImpl implements ITPoolTableService
     @Override
     public int insertTPoolTable(TPoolTable tPoolTable)
     {
+        if (tPoolTable.getNo()==null||tPoolTable.getNo()==0){
+            throw new RuntimeException("球台编号不能为空！");
+        }
+        Long tableNo = tPoolTable.getNo();
+        TPoolTable poolTable=new TPoolTable();
+        poolTable.setNo(tableNo);
+        List<TPoolTable> tPoolTables = tPoolTableMapper.selectTPoolTableList(poolTable);
+        if (!CollectionUtils.isEmpty(tPoolTables)){
+            throw new RuntimeException("球台编号["+tableNo+"]已存在！");
+        }
         return tPoolTableMapper.insertTPoolTable(tPoolTable);
     }
 

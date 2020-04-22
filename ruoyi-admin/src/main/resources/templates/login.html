@@ -29,8 +29,19 @@
                         <h1><img alt="[ LOGO ]" src="../static/ruoyi.png" th:src="@{/ruoyi.png}"></h1>
                     </div>
                     <div class="m-b"></div>
-                    <h4 style="color: black">欢迎使用 <strong>校园球台预约管理系统</strong></h4>
-                    <br><br><br><br><br><br>
+                    <h3 style="color: black">欢迎使用 <strong>wtu校园球台预约管理系统</strong></h3>
+                    <ul class="m-b">
+                        <li style="color: black"><font style="font-weight: bold" color="#008b8b">使用指南</font>&nbsp;<i class="fa fa-arrow-circle-o-right m-r-xs"></i> 新用户登录校园球台预约系统，点击注册，填写相关信息即可注册成功。为了平台有效管理，请如实填写相关信息。普通用户登录平台后可进行球台预约，球台报修，满意度评价，您的需求管理员会在最短时间之内进行相关处理。</li>
+                        <br>
+                        <li style="color:black"><font style="font-weight: bold" color="#008b8b">关于我们</font>&nbsp;<i class="fa fa-arrow-circle-o-right m-r-xs"></i> wtu球台预约系统是为广大师生提供乒乓球台预定及管理的网站，以实名制为基础，为用户提供球台预约、报修服务、满意度评价等丰富强大的互联网功能体验，致力于满足用户对球室器材合理配置的需求。如果您是一位乒乓球运动爱好者，正为球台预定而疲于奔波，或为球台损坏迟迟不得修缮而苦恼，相信这款线上校园球台预约系统将为您提供更加优质的服务。我们期待用最优秀的用户体验，给用户带来最大的价值。</li>
+                        <br>
+                        <li style="color:black"><font style="font-weight: bold" color="#008b8b">联系我们 </font><i class="fa fa-arrow-circle-o-right m-r-xs"></i>
+                                <li style="margin-left: 0%;color: black">Email：wtuPingpong@yeah.net</li>
+                                <li style="margin-left: 0%;color: black">微博：wtu乒乓球台预定资讯</li>
+                                <li style="margin-left: 0%;color: black">微信：wtu乒乓球台预定</li>
+                                <li style="margin-left: 0%;color: black">电话：010-66666666</li>
+                        </li>
+                    </ul>
                     <strong style="color: black" th:if="${@config.getKey('sys.account.registerUser')}">还没有账号？ <a th:href="@{/register}">立即注册&raquo;</a></strong>
                 </div>
             </div>
