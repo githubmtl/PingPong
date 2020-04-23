@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header2('联系我们')" />
+</head>
+<body class="layui-layout-body" style="background-color: #edecec;">
+<div class="layui-layout layui-layout-admin">
+	<div class="layui-header" style="background-color: #ffffff">
+		<a href="/" th:href="@{/}"><div style="position:absolute;left:0;top:0;width:600px;height:100%;line-height:60px;text-align:left;color:#009688;font-size:xx-large;font-weight: bolder">&nbsp;&nbsp; wtu校园球台预约管理系统</div></a>
+	</div>
+
+	<div class="layui-side layui-bg-black" style="margin-top: 15px;">
+		<div class="layui-side-scroll layui-bg-black" >
+			<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+			<ul class="layui-nav layui-nav-tree layui-bg-black"  lay-filter="test">
+				<li class="layui-nav-item"><a href="/webInfo/syzn">使用指南</a></li>
+				<li class="layui-nav-item"><a href="/webInfo/aboutme">关于我们</a></li>
+				<li class="layui-nav-item"><a href="/webInfo/lxwm">联系我们</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="layui-body">
+		<!-- 内容主体区域 -->
+		<div style="padding: 15px;">
+			<div style="padding: 20px; background-color: #ffffff;">
+				<div class="layui-row layui-col-space15">
+					<div class="layui-col-md12">
+						<div class="layui-card">
+							<div class="layui-card-header" style="font-size: x-large;font-weight: bold">联系我们</div>
+							<div class="layui-card-body" style="font-size: large">
+								<p>
+									<ul>
+										<li style="margin-left: 0%;color: black">Email：wtuPingpong@yeah.net</li>
+										<li style="margin-left: 0%;color: black">微博：wtu乒乓球台预定资讯</li>
+										<li style="margin-left: 0%;color: black">微信：wtu乒乓球台预定</li>
+										<li style="margin-left: 0%;color: black">电话：010-66666666</li>
+									</ul>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<th:block th:include="include :: footer2" />
+	<script th:inline="javascript">
+		//JavaScript代码区域
+		layui.use('element', function(){
+			var element = layui.element;
+		});
+    </script>
+</body>
+</html>

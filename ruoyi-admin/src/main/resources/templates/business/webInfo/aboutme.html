@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header2('关于我们')" />
+</head>
+<body class="layui-layout-body" style="background-color: #edecec;">
+<div class="layui-layout layui-layout-admin">
+	<div class="layui-header" style="background-color: #ffffff">
+		<a href="/" th:href="@{/}"><div style="position:absolute;left:0;top:0;width:600px;height:100%;line-height:60px;text-align:left;color:#009688;font-size:xx-large;font-weight: bolder">&nbsp;&nbsp; wtu校园球台预约管理系统</div></a>
+	</div>
+
+	<div class="layui-side layui-bg-black" style="margin-top: 15px;">
+		<div class="layui-side-scroll layui-bg-black" >
+			<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+			<ul class="layui-nav layui-nav-tree layui-bg-black"  lay-filter="test">
+				<li class="layui-nav-item"><a href="/webInfo/syzn">使用指南</a></li>
+				<li class="layui-nav-item"><a href="/webInfo/aboutme">关于我们</a></li>
+				<li class="layui-nav-item"><a href="/webInfo/lxwm">联系我们</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="layui-body">
+		<!-- 内容主体区域 -->
+		<div style="padding: 15px;">
+			<div style="padding: 20px; background-color: #ffffff;">
+				<div class="layui-row layui-col-space15">
+					<div class="layui-col-md12">
+						<div class="layui-card">
+							<div class="layui-card-header" style="font-size: x-large;font-weight: bold">关于我们</div>
+							<div class="layui-card-body" style="font-size: large">
+								<p>
+									wtu球台预约系统是为广大师生提供乒乓球台预定及管理的网站，以实名制为基础，为用户提供球台预约、报修服务、满意度评价等丰富强大的互联网功能体验，致力于满足用户对球室器材合理配置的需求。如果您是一位乒乓球运动爱好者，正为球台预定而疲于奔波，或为球台损坏迟迟不得修缮而苦恼，相信这款线上校园球台预约系统将为您提供更加优质的服务。我们期待用最优秀的用户体验，给用户带来最大的价值。
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<th:block th:include="include :: footer2" />
+	<script th:inline="javascript">
+		//JavaScript代码区域
+		layui.use('element', function(){
+			var element = layui.element;
+		});
+    </script>
+</body>
+</html>
